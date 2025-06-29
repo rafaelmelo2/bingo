@@ -113,8 +113,11 @@ function awardPrize(io, kitId, cardId, type, gameId, onPrizeCallback) {
   db.get('SELECT COUNT(*) as cnt FROM prizes WHERE kit_id = ? AND type = ? AND game_id = ?', [kitId, type, gameId], (err, row) => {
     if (err || row.cnt > 0) return; // Já tem prêmio ou erro
     
+    // Definir pontos baseado no tipo de prêmio
+    const points = type === 'quina' ? 30 : type === 'full' ? 100 : 0;
+    
     // Inserir prêmio
-    db.run('INSERT INTO prizes (kit_id, card_id, type, game_id) VALUES (?, ?, ?, ?)', [kitId, cardId, type, gameId], (err) => {
+    db.run('INSERT INTO prizes (kit_id, card_id, type, game_id, points) VALUES (?, ?, ?, ?, ?)', [kitId, cardId, type, gameId, points], (err) => {
       if (!err) {
         io.emit('prize', { type, kitId, cardId });
         if (onPrizeCallback) onPrizeCallback();

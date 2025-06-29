@@ -8,6 +8,9 @@ db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS games (
     game_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
+    game_type TEXT DEFAULT 'manual',
+    scheduled_time DATETIME,
+    auto_draw BOOLEAN DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     ended_at DATETIME
   )`);
@@ -48,12 +51,30 @@ db.serialize(() => {
     card_id INTEGER NOT NULL,
     type TEXT NOT NULL,
     game_id INTEGER NOT NULL,
+    points INTEGER DEFAULT 0,
     claimed BOOLEAN DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (kit_id) REFERENCES kits (kit_id),
     FOREIGN KEY (card_id) REFERENCES cards (id),
     FOREIGN KEY (game_id) REFERENCES games (game_id)
   )`);
+
+  // Adicionar novas colunas se não existirem (com verificação segura)
+  db.all(`PRAGMA table_info(games)`, (err, rows) => {
+    if (!err && rows && Array.isArray(rows)) {
+      const columnNames = rows.map(row => row.name);
+      
+      if (!columnNames.includes('game_type')) {
+        db.run(`ALTER TABLE games ADD COLUMN game_type TEXT DEFAULT 'manual'`);
+      }
+      if (!columnNames.includes('scheduled_time')) {
+        db.run(`ALTER TABLE games ADD COLUMN scheduled_time DATETIME`);
+      }
+      if (!columnNames.includes('auto_draw')) {
+        db.run(`ALTER TABLE games ADD COLUMN auto_draw BOOLEAN DEFAULT 0`);
+      }
+    }
+  });
 
   // Remover tabelas antigas se existirem
   db.run(`DROP TABLE IF EXISTS users`);
