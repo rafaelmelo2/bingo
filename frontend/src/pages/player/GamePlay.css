@@ -1,0 +1,458 @@
+.game-play {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.game-info h2 {
+  margin: 0 0 10px 0;
+  font-size: 28px;
+}
+
+.game-info p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 16px;
+}
+
+.player-stats {
+  display: flex;
+  gap: 20px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  z-index: 1000;
+  animation: slideIn 0.5s ease-out;
+  max-width: 400px;
+}
+
+.notification.winner {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+}
+
+.notification.info {
+  background: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%);
+  color: white;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.notification-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.notification-content p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.game-content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 30px;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.drawn-numbers-section,
+.buy-card-section {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.drawn-numbers-section h3,
+.buy-card-section h3 {
+  color: #495057;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.drawn-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+  min-height: 40px;
+}
+
+.drawn-number {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  min-width: 30px;
+  text-align: center;
+  animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.numbers-count {
+  color: #6c757d;
+  font-size: 14px;
+  margin: 0;
+}
+
+.buy-card-section p {
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+.btn-buy-card {
+  width: 100%;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-buy-card:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.btn-buy-card:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-back {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+.right-panel h3 {
+  color: #495057;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.no-cards {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 2px dashed #dee2e6;
+}
+
+.no-cards p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.bingo-card {
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bingo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.bingo-card.quina-won {
+  border-color: #ffc107;
+  background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%);
+}
+
+.bingo-card.full-won {
+  border-color: #28a745;
+  background: linear-gradient(135deg, #f8fff9 0%, #f0fff4 100%);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.card-header h4 {
+  margin: 0;
+  color: #333;
+  font-size: 16px;
+}
+
+.card-status {
+  display: flex;
+  gap: 5px;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.quina {
+  background: #ffc107;
+  color: #212529;
+}
+
+.status-badge.full {
+  background: #28a745;
+  color: white;
+}
+
+.bingo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.bingo-row {
+  display: contents;
+}
+
+.bingo-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  font-weight: 600;
+  font-size: 14px;
+  color: #495057;
+  transition: all 0.3s ease;
+}
+
+.bingo-cell.marked {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.win-indicator {
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+.win-indicator.quina {
+  background: #ffc107;
+  color: #212529;
+}
+
+.win-indicator.full {
+  background: #28a745;
+  color: white;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 193, 7, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+  }
+}
+
+.game-ended {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+}
+
+.game-ended h2 {
+  margin-bottom: 15px;
+  color: #495057;
+}
+
+.game-ended p {
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+@media (max-width: 1024px) {
+  .game-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .left-panel {
+    order: 2;
+  }
+  
+  .right-panel {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-play {
+    padding: 15px;
+  }
+  
+  .game-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .player-stats {
+    justify-content: center;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .notification {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+  }
+  
+  .bingo-grid {
+    gap: 1px;
+  }
+  
+  .bingo-cell {
+    font-size: 12px;
+  }
+}
+
+/* Estilos para o timer de compra */
+.purchase-info {
+  margin: 15px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+}
+
+.purchase-info p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #495057;
+}
+
+.timer-warning {
+  color: #dc3545 !important;
+  font-weight: bold;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.7; }
+} 

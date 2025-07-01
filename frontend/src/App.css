@@ -14,9 +14,8 @@ body {
 
 .App {
   min-height: 100vh;
-  padding: 1rem;
-  max-width: 1400px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Notificação central de prêmio */
@@ -89,76 +88,298 @@ body {
 
 /* Container de Login */
 .login-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-header h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.login-header p {
+  color: #666;
+  font-size: 16px;
+}
+
+.login-tabs {
+  width: 100%;
+}
+
+.tab-buttons {
+  display: flex;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.tab-button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  background: #f8f9fa;
+  color: #666;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.tab-button:hover {
+  background: #e9ecef;
+}
+
+.tab-button.active:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+.login-content {
+  width: 100%;
 }
 
 .login-section {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.login-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  margin-bottom: 30px;
 }
 
 .login-section h3 {
-  text-align: center;
-  margin-bottom: 1.5rem;
   color: #333;
-  font-size: 1.5rem;
-  border-bottom: 3px solid #4ecdc4;
-  padding-bottom: 0.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px;
 }
 
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.form-group {
+  margin-bottom: 20px;
 }
 
-.login-form input {
-  padding: 1rem;
-  font-size: 1rem;
-  border: 2px solid #e1e5e9;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.9);
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #495057;
+  font-weight: 600;
 }
 
-.login-form input:focus {
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
   outline: none;
-  border-color: #4ecdc4;
-  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
-  transform: translateY(-2px);
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.login-form button {
-  padding: 1rem;
-  font-size: 1rem;
-  background: linear-gradient(45deg, #4ecdc4, #44a08d);
+.login-section button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-.login-form button:hover {
+.login-section button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
-  background: linear-gradient(45deg, #44a08d, #4ecdc4);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.login-divider {
+  text-align: center;
+  margin: 30px 0;
+  position: relative;
+}
+
+.login-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e9ecef;
+}
+
+.login-divider span {
+  background: white;
+  padding: 0 20px;
+  color: #666;
+  font-weight: 600;
+}
+
+/* ===== HEADER DO ADMIN ===== */
+.admin-header {
+  background: white;
+  padding: 20px 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-info h2 {
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.admin-info p {
+  color: #666;
+  margin: 0;
+}
+
+.admin-nav {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.nav-button {
+  padding: 10px 20px;
+  border: 2px solid #667eea;
+  background: white;
+  color: #667eea;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-button.active {
+  background: #667eea;
+  color: white;
+}
+
+.nav-button:hover:not(:disabled) {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.logout-button {
+  padding: 10px 20px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+}
+
+.admin-content {
+  flex: 1;
+  background: #f8f9fa;
+}
+
+/* ===== HEADER DO PLAYER ===== */
+.player-header {
+  background: white;
+  padding: 20px 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-info h2 {
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.player-info p {
+  color: #666;
+  margin: 0;
+}
+
+.player-content {
+  flex: 1;
+  background: #f8f9fa;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  .login-container {
+    margin: 20px;
+    padding: 30px 20px;
+  }
+  
+  .login-header h1 {
+    font-size: 28px;
+  }
+  
+  .admin-header,
+  .player-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .admin-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    margin: 10px;
+    padding: 20px 15px;
+  }
+  
+  .tab-buttons {
+    flex-direction: column;
+  }
+  
+  .tab-button {
+    border-radius: 0;
+  }
+  
+  .tab-button:first-child {
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .tab-button:last-child {
+    border-radius: 0 0 8px 8px;
+  }
 }
 
 /* Container do Jogo */

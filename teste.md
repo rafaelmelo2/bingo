@@ -1,5 +1,4 @@
-Quase bom.
-
+cbcb-e334-d846
 
 - Troquei o nome da pasta de bingo-frontend para apenas frontend, ajuste os arquivos (SE NECESSÁRIO)
 - Retire o botão da pessoa cadastrada realizar sorteio de número.

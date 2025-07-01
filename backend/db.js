@@ -12,6 +12,7 @@ db.serialize(() => {
     scheduled_time DATETIME,
     auto_draw BOOLEAN DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    started_at DATETIME,
     ended_at DATETIME
   )`);
 
@@ -72,6 +73,9 @@ db.serialize(() => {
       }
       if (!columnNames.includes('auto_draw')) {
         db.run(`ALTER TABLE games ADD COLUMN auto_draw BOOLEAN DEFAULT 0`);
+      }
+      if (!columnNames.includes('started_at')) {
+        db.run(`ALTER TABLE games ADD COLUMN started_at DATETIME`);
       }
     }
   });
